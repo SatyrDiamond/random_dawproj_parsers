@@ -2,8 +2,8 @@ import struct
 import zlib
 from objects import bytereader
 
-def printchunk(num, trk_chunkid, trk_chunk_obj, song_data):
-	print('\t'*num, trk_chunkid, trk_chunk_obj.size, song_data.raw(min(trk_chunk_obj.size, 16)))
+def printchunk(num, trk_chunkid, trk_chunk_obj, song_data, view):
+	print('    '*(num) + ('--> ' if (num>0) else '') + str(trk_chunkid), trk_chunk_obj.size if view else '', song_data.raw(min(trk_chunk_obj.size, 28)) if view else '')
 
 class dms_project:
 	def __init__(self):
@@ -22,17 +22,19 @@ class dms_project:
 		for chunk_obj in main_iff_obj.iter(0, song_data.end):
 			chunkid = int.from_bytes(chunk_obj.id, 'little')
 
-			printchunk(0, chunkid, chunk_obj, song_data)
-
 			if chunkid in [1003, 1008]:
+				printchunk(0, chunkid, chunk_obj, song_data, False)
 				for trk_chunk_obj in chunk_obj.iter():
 					trk_chunkid = int.from_bytes(trk_chunk_obj.id, 'little')
-					printchunk(1, trk_chunkid, trk_chunk_obj, song_data)
 					if trk_chunkid in [2009, 1010, 2008, 2001]:
+						printchunk(1, trk_chunkid, trk_chunk_obj, song_data, False)
 						for trk_subchunk_obj in trk_chunk_obj.iter():
 							subchunkid = int.from_bytes(trk_subchunk_obj.id, 'little')
-							printchunk(2, subchunkid, trk_subchunk_obj, song_data)
-
+							printchunk(2, subchunkid, trk_subchunk_obj, song_data, True)
+					else:
+						printchunk(1, trk_chunkid, trk_chunk_obj, song_data, True)
+			else:
+				printchunk(0, chunkid, chunk_obj, song_data, True)
 
 testin = dms_project()
 testin.load_from_file(
