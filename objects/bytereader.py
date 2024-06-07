@@ -1,7 +1,7 @@
 import struct
 import varint
 import os
-from objects import bytereader
+import numpy
 from io import BytesIO
 
 class chunk_size:
@@ -28,10 +28,10 @@ class chunk_loc:
         self.end = 0
         self.size = 0
 
-    def iter(self): 
+    def iter(self, offset): 
         subchunk_obj = self.t_byteread.chunk_objmake()
         subchunk_obj.sizedata = self.t_sizedata
-        return subchunk_obj.iter(self.start, self.end)
+        return subchunk_obj.iter(self.start+offset, self.end)
 
     def debugtxt(self):
         print(self.id, self.start, self.end)
@@ -88,8 +88,6 @@ class bytereader:
     unpack_double = struct.Struct('<d').unpack
     unpack_double_b = struct.Struct('>d').unpack
 
-    unpack_varint = varint.decode_stream
-
     def __init__(self):
         self.buf = None
         self.end = 0
@@ -128,6 +126,8 @@ class bytereader:
 
     def skip(self, num): return self.buf.seek(self.buf.tell()+num)
 
+    def remaining(self): return max(0, self.end - self.buf.tell())
+
     def bytesplit(self):
         value = self.uint8()
         return value >> 4, value & 0x0F
@@ -161,9 +161,26 @@ class bytereader:
 
     def flags8(self): return get_bitnums_int(self.uint8())
     def flags16(self): return get_bitnums_int(self.uint16())
+    def flags24(self): return get_bitnums_int(self.uint24())
     def flags32(self): return get_bitnums_int(self.uint32())
 
-    def varint(self): return self.unpack_varint(self.buf)
+    def table8(self, tabledata):
+        numbytes = numpy.prod(tabledata)
+        return numpy.frombuffer(self.buf.read(numbytes), numpy.uint8).reshape(*tabledata)
+
+    def table16(self, tabledata):
+        numbytes = numpy.prod(tabledata)*2
+        return numpy.frombuffer(self.buf.read(numbytes), numpy.uint16).reshape(*tabledata)
+
+    def stable8(self, tabledata):
+        numbytes = numpy.prod(tabledata)
+        return numpy.frombuffer(self.buf.read(numbytes), numpy.int8).reshape(*tabledata)
+
+    def stable16(self, tabledata):
+        numbytes = numpy.prod(tabledata)*2
+        return numpy.frombuffer(self.buf.read(numbytes), numpy.int16).reshape(*tabledata)
+
+    def varint(self): return varint.decode_stream(self.buf)
 
     def raw(self, size): return self.buf.read(size)
 
