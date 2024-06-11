@@ -2,6 +2,7 @@ import struct
 import varint
 import os
 import numpy
+import mmap
 from io import BytesIO
 
 class chunk_size:
@@ -99,7 +100,8 @@ class bytereader:
         if os.path.exists(filename):
             file_stats = os.stat(filename)
             self.end = file_stats.st_size
-            self.buf = open(filename, 'rb')
+            f = open(filename)
+            self.buf = mmap.mmap(f.fileno(), 0, access = mmap.ACCESS_READ)
             return True
         else:
             print('File Not Found', filename)
