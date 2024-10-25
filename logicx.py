@@ -2,10 +2,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from objects import bytereader
-import logging
-
-logger_projparse = logging.getLogger('projparse')
-
 
 class chunk:
 	def __init__(self, byr_stream):
