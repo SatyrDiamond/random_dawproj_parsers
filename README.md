@@ -13,20 +13,5 @@
 | Sony Acid 7 | ```new_acid.py``` | ⚙️ Decoder Done, no objects | [Link](https://archive.org/details/acidpro70_build502) | None |
 | x-tracker | ```xtracker_dmf.py``` | ⚙️ Partial | [Link](https://www.pouet.net/prod.php?which=55233) | [Link](https://web.archive.org/web/20090202095902/http://www.xtracker32.org/fileformat.shtml) |
 | SunVox | ```sunvox.py``` | ⚙️ Partial | [Link](https://warmplace.ru/soft/sunvox/) | [Link](https://radiant-voices.readthedocs.io/en/latest/sunvox-file-format.html) |
-
-# Finished
-| Name | File | Parser Status | DAW download link | Format Specs | 
-| --- | :--- | :--- | :--- | :--- |
-| Hydrogen | ```hydrogen.py``` | ✔️ Done | None | None |
-| Recomposer MIDI | ```recomposer.py``` | ✔️ Done | None | None |
-| Soundbug | ```soundbug.py``` | ✔️ Done, same as Waveform. | [Link](https://www.soundbug.com/) | None |
-| SC68 | ```sc68.py``` | ✔️ Done | None | None |
-| SNES GSS | ```snes_gss.py``` | ✔️ Done | None | None |
-| SNES SPC | ```snes_spc.py``` | ✔️ Done | None | None |
-| NES NSF | ```nes_nsf.py``` | ✔️ Done | None | None |
-| 1tracker | ```1tracker.py``` | ✔️ Done | None | None |
-| Adlib HSC | ```adlib_hsc.py``` | ✔️ Done | None | None |
-| Atari SAP | ```atari_sap.py``` | ✔️ Done | None | None |
-| C64 SID | ```c64_sid.py``` | ✔️ Done | None | None |
-| 1tracker | ```1tracker.py``` | ✔️ Done | None | None |
-
+| rosegarden | ```rosegarden.py``` | ⚙️ Mostly | [Link](https://www.rosegardenmusic.com/) | XML |
+| Orion Platinum | ```orion.py``` | ⚙️ Mostly | [Link](https://archive.org/details/orionp-7603) | XML |
