@@ -72,16 +72,16 @@ class chunk__maindata:
 		self.unknowndata.append( byr_stream.int16() )
 		self.unknowndata.append( byr_stream.int16() )
 		byr_stream.skip(88)
-		self.unknowndata.append( byr_stream.int64() )
-		self.unknowndata.append( byr_stream.int32() )
-		self.unknowndata.append( byr_stream.string16_t() )
-		self.unknowndata.append( byr_stream.string16_t() )
-		self.unknowndata.append( byr_stream.string16_t() )
-		self.unknowndata.append( byr_stream.string16_t() )
-		self.unknowndata.append( byr_stream.string16_t() )
-		self.unknowndata.append( byr_stream.string16_t() )
-		self.unknowndata.append( byr_stream.string16_t() )
-		self.unknowndata.append( byr_stream.string16_t() )
+		if byr_stream.remaining(): self.unknowndata.append( byr_stream.int64() )
+		if byr_stream.remaining(): self.unknowndata.append( byr_stream.int32() )
+		if byr_stream.remaining(): self.unknowndata.append( byr_stream.string16_t() )
+		if byr_stream.remaining(): self.unknowndata.append( byr_stream.string16_t() )
+		if byr_stream.remaining(): self.unknowndata.append( byr_stream.string16_t() )
+		if byr_stream.remaining(): self.unknowndata.append( byr_stream.string16_t() )
+		if byr_stream.remaining(): self.unknowndata.append( byr_stream.string16_t() )
+		if byr_stream.remaining(): self.unknowndata.append( byr_stream.string16_t() )
+		if byr_stream.remaining(): self.unknowndata.append( byr_stream.string16_t() )
+		if byr_stream.remaining(): self.unknowndata.append( byr_stream.string16_t() )
 
 class chunk__track_data:
 	def __init__(self, byr_stream):
@@ -158,7 +158,7 @@ chunksdef['276cd4690b7fd211871700c04f8edb8a'] = chunk__audioinfo
 
 # ---------------------- INDATA ----------------------
 
-VERBOSE = False
+VERBOSE = True
 
 verboseid = {}
 verboseid['5a2d8fb20f23d21186af00c04f8edb8a'] = 'MainData'
@@ -240,4 +240,4 @@ class sony_acid_song:
 		root.read(byr_stream, 0)
 
 apeinst_obj = sony_acid_song()
-apeinst_obj.load_from_file("Untitled.acd")
+apeinst_obj.load_from_file("Hybrid.acd")
