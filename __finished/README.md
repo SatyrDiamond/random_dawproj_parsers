@@ -15,4 +15,5 @@
 | Atari SAP | ```atari_sap.py``` | ✔️ Done | None | None |
 | C64 SID | ```c64_sid.py``` | ✔️ Done | None | None |
 | 1tracker | ```1tracker.py``` | ✔️ Done | None | None |
+| Sequel 3 | ```sequel.py``` | ✔️ Done | None | None |
 

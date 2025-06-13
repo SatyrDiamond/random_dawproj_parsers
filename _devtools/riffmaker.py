@@ -9,7 +9,7 @@ sys.path.insert(0, parentdir)
 
 from objects.data_bytes import riff_chunks
 
-input_file = "G:\\RandomMusicFiles\\old\\magix\\1999-MM5\\BlueBeatz.VIP"
+input_file = "Sample Playlist.mmp"
 
 itemlist = []
 grouplist = []
