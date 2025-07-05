@@ -16,4 +16,9 @@
 | C64 SID | ```c64_sid.py``` | ✔️ Done | None | None |
 | 1tracker | ```1tracker.py``` | ✔️ Done | None | None |
 | Sequel 3 | ```sequel.py``` | ✔️ Done | None | None |
+| Easy Audio Mixer | ```easy_audio_mixer.py``` | ✔️ Done | None | None |
+| MixPad | ```mixpad.py``` | ✔️ Done | None | None |
+| SoundOp | ```soundop.py``` | ✔️ Done | None | None |
+| Notion | ```notion.py``` | ✔️ Decoder | None | None |
+| Massiva | ```massiva.py``` | ✔️ Done | None | None |
 
