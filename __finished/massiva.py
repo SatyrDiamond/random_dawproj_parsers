@@ -13,8 +13,8 @@ class massiva_clip:
 		self.name = byr_stream.c_string__int8()
 		self.pos = byr_stream.uint32_b()
 		self.dur = byr_stream.uint32_b()
-		self.unk1 = byr_stream.uint32_b()
-		self.unk2 = byr_stream.uint32_b()
+		self.id = byr_stream.uint32_b()
+		self.flags = byr_stream.uint32_b()
 		num_events = byr_stream.uint32_b()
 		for x in range(num_events):
 			dpos = byr_stream.uint32_b()
