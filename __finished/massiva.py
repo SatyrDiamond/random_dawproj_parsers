@@ -28,6 +28,16 @@ class massiva_clip:
 class massiva_track:
 	def __init__(self, byr_stream, vers):
 		self.clips = []
+		self.name = ''
+		self.channel = 0
+		self.bank = 0
+		self.patch = 0
+		self.unk4 = 0
+		self.vol = 0
+		self.pan = 0
+		self.reverb = 0
+		self.chorus = 0
+		self.transpose = 0
 		if byr_stream: self.read(byr_stream, vers)
 
 	def read(self, byr_stream, vers):
@@ -41,7 +51,9 @@ class massiva_track:
 		self.pan = byr_stream.uint32_b()
 		self.reverb = byr_stream.uint32_b()
 		self.chorus = byr_stream.uint32_b()
-		if vers == 1: byr_stream.skip(12)
+		if vers == 1: 
+			self.transpose = byr_stream.int32_b()
+			byr_stream.skip(8)
 		num_clips = byr_stream.uint32_b()
 		self.clips = [massiva_clip(byr_stream) for x in range(num_clips)]
 
